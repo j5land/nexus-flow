@@ -4,6 +4,8 @@
 
 **NexusFlow** is a modern, local-first flow presentation tool built with React Flow. It allows you to create interactive diagrams, mind maps, and presentation boards with rich media support, all running directly in your browser without any cloud dependency.
 
+![NexusFlow Preview](docs/assets/preview.png)
+
 ## ✨ Features
 
 - **Infinite Canvas**: Drag, zoom, and pan freely on an infinite workspace.
