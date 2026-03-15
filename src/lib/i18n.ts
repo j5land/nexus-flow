@@ -33,6 +33,8 @@ i18n
             createBoard: 'Create New Board',
             boardNamePlaceholder: 'Board Name...',
             deleteBoardConfirm: 'Are you sure you want to delete this board?',
+            lightMode: 'Light Mode',
+            darkMode: 'Dark Mode',
           },
           help: {
             title: 'NexusFlow Guide',
@@ -143,6 +145,8 @@ i18n
             createBoard: '创建新看板',
             boardNamePlaceholder: '看板名称...',
             deleteBoardConfirm: '确定要删除这个看板吗？',
+            lightMode: '亮色模式',
+            darkMode: '暗色模式',
           },
           help: {
             title: 'NexusFlow 使用指南',

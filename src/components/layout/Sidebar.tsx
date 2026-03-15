@@ -1,12 +1,14 @@
-import { Plus, Trash2, FileText, ChevronLeft, ChevronRight, Edit2, Workflow, Box } from 'lucide-react';
+import { Plus, Trash2, FileText, ChevronLeft, ChevronRight, Edit2, Workflow, Box, Moon, Sun } from 'lucide-react';
 import { useBoardStore } from '../../store/useBoardStore';
 import { cn } from '../../lib/utils';
 import { useState, useEffect } from 'react';
 import { HelpModal } from '../HelpModal';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../context/ThemeContext';
 
 export function Sidebar() {
   const { t } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
   const { boards, currentBoardId, createBoard, deleteBoard, setCurrentBoard, updateBoardName, init } = useBoardStore();
   const [isCreating, setIsCreating] = useState(false);
   const [newBoardName, setNewBoardName] = useState('');
@@ -50,24 +52,26 @@ export function Sidebar() {
   return (
     <aside 
       className={cn(
-        "bg-[#1b1d21] border-r border-[#3e4149] flex flex-col h-screen text-gray-300 transition-all duration-300 relative select-none",
-        isCollapsed ? "w-16" : "w-64"
+        "border-r flex flex-col h-screen transition-all duration-300 relative select-none",
+        theme === 'dark' ? "bg-[#1b1d21] border-[#3e4149] text-gray-300" : "bg-white border-gray-200 text-gray-600",
+        isCollapsed ? "w-16" : "w-48"
       )}
     >
       {/* Header / Logo Area */}
       <div className={cn(
-        "h-16 border-b border-[#3e4149] flex items-center px-4 transition-all duration-300",
+        "h-12 border-b flex items-center px-3 transition-all duration-300",
+        theme === 'dark' ? "border-[#3e4149]" : "border-gray-200",
         isCollapsed ? "justify-center px-0" : "justify-between"
       )}>
-        <div className="flex items-center gap-3 overflow-hidden">
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff6d5a] to-[#ff8f7d] shadow-lg shadow-orange-500/20 shrink-0">
-            <Workflow size={18} className="text-white" />
+        <div className="flex items-center gap-2 overflow-hidden">
+          <div className="relative flex items-center justify-center w-6 h-6 rounded-lg bg-gradient-to-br from-[#ff6d5a] to-[#ff8f7d] shadow-lg shadow-orange-500/20 shrink-0">
+            <Workflow size={14} className="text-white" />
           </div>
           
           {!isCollapsed && (
             <div className="flex flex-col">
-              <span className="font-bold text-lg leading-none text-white tracking-tight">Nexus</span>
-              <span className="text-[10px] text-gray-400 font-medium tracking-wider uppercase">Flow</span>
+              <span className={cn("font-bold text-base leading-none tracking-tight", theme === 'dark' ? "text-white" : "text-gray-900")}>Nexus</span>
+              <span className="text-[9px] text-gray-400 font-medium tracking-wider uppercase">Flow</span>
             </div>
           )}
         </div>
@@ -76,7 +80,12 @@ export function Sidebar() {
       {/* Collapse Toggle - Integrated into the border */}
       <button 
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute -right-3 top-[52px] w-6 h-6 bg-[#2d3036] border border-[#3e4149] rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-[#ff6d5a] hover:bg-[#3e4149] transition-all z-20 shadow-sm"
+        className={cn(
+          "absolute -right-3 top-[36px] w-6 h-6 border rounded-full flex items-center justify-center transition-all z-20 shadow-sm",
+          theme === 'dark' 
+            ? "bg-[#2d3036] border-[#3e4149] text-gray-400 hover:text-white hover:border-[#ff6d5a] hover:bg-[#3e4149]" 
+            : "bg-white border-gray-200 text-gray-400 hover:text-gray-900 hover:border-[#ff6d5a] hover:bg-gray-50"
+        )}
       >
         {isCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
       </button>
@@ -88,7 +97,10 @@ export function Sidebar() {
             <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{t('common.workspaces')}</span>
             <button 
                onClick={() => setIsCreating(true)}
-               className="p-1 text-gray-500 hover:text-[#ff6d5a] transition-colors rounded hover:bg-white/5"
+               className={cn(
+                 "p-1 transition-colors rounded",
+                 theme === 'dark' ? "text-gray-500 hover:text-[#ff6d5a] hover:bg-white/5" : "text-gray-400 hover:text-[#ff6d5a] hover:bg-gray-100"
+               )}
                title={t('common.createBoard')}
             >
               <Plus size={14} />
@@ -106,7 +118,7 @@ export function Sidebar() {
                   "group relative flex items-center rounded-md cursor-pointer transition-all duration-200",
                   isActive 
                     ? "bg-gradient-to-r from-[#ff6d5a]/10 to-transparent text-[#ff6d5a]" 
-                    : "text-gray-400 hover:bg-white/5 hover:text-gray-200",
+                    : theme === 'dark' ? "text-gray-400 hover:bg-white/5 hover:text-gray-200" : "text-gray-500 hover:bg-gray-100 hover:text-gray-900",
                   isCollapsed ? "justify-center h-10 w-10 mx-auto" : "px-3 py-2"
                 )}
                 onClick={() => setCurrentBoard(board.id)}
@@ -125,7 +137,10 @@ export function Sidebar() {
                       type="text"
                       value={editName}
                       onChange={(e) => setEditName(e.target.value)}
-                      className="flex-1 bg-[#1b1d21] border border-[#ff6d5a] rounded px-2 py-1 text-sm outline-none text-white min-w-0"
+                      className={cn(
+                        "flex-1 border border-[#ff6d5a] rounded px-2 py-1 text-sm outline-none min-w-0",
+                        theme === 'dark' ? "bg-[#1b1d21] text-white" : "bg-white text-gray-900"
+                      )}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') saveEdit(board.id);
                         if (e.key === 'Escape') cancelEdit();
@@ -136,17 +151,20 @@ export function Sidebar() {
                 ) : (
                   <>
                     <div className={cn("flex items-center justify-center shrink-0", isCollapsed ? "" : "mr-3")}>
-                      <Box size={18} className={cn(isActive ? "text-[#ff6d5a]" : "group-hover:text-gray-200")} />
+                      <Box size={18} className={cn(isActive ? "text-[#ff6d5a]" : theme === 'dark' ? "group-hover:text-gray-200" : "group-hover:text-gray-900")} />
                     </div>
                     
                     {!isCollapsed && (
                       <div className="flex-1 min-w-0 flex items-center justify-between">
                         <span className="truncate text-sm font-medium">{board.name}</span>
                         
-                        <div className="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity absolute right-2 bg-[#1b1d21] shadow-[-8px_0_12px_#1b1d21]">
+                        <div className={cn(
+                          "opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity absolute right-2 shadow-[-8px_0_12px]",
+                          theme === 'dark' ? "bg-[#1b1d21] shadow-[#1b1d21]" : "bg-white shadow-white"
+                        )}>
                           <button 
                             onClick={(e) => startEditing(e, board.id, board.name)}
-                            className="p-1.5 hover:bg-[#3e4149] rounded hover:text-blue-400 transition-colors"
+                            className={cn("p-1.5 rounded hover:text-blue-400 transition-colors", theme === 'dark' ? "hover:bg-[#3e4149]" : "hover:bg-gray-100")}
                           >
                             <Edit2 size={12} />
                           </button>
@@ -157,7 +175,7 @@ export function Sidebar() {
                                   deleteBoard(board.id);
                               }
                             }}
-                            className="p-1.5 hover:bg-[#3e4149] rounded hover:text-red-400 transition-colors"
+                            className={cn("p-1.5 rounded hover:text-red-400 transition-colors", theme === 'dark' ? "hover:bg-[#3e4149]" : "hover:bg-gray-100")}
                           >
                             <Trash2 size={12} />
                           </button>
@@ -173,7 +191,10 @@ export function Sidebar() {
           {/* Creation Form */}
           {!isCollapsed && isCreating && (
             <form onSubmit={handleCreate} className="px-2 mt-2">
-              <div className="flex items-center gap-2 bg-[#1b1d21] border border-[#ff6d5a] rounded-md px-3 py-2">
+              <div className={cn(
+                "flex items-center gap-2 border border-[#ff6d5a] rounded-md px-3 py-2",
+                theme === 'dark' ? "bg-[#1b1d21]" : "bg-white"
+              )}>
                 <Box size={18} className="text-[#ff6d5a] shrink-0" />
                 <input
                   autoFocus
@@ -181,7 +202,10 @@ export function Sidebar() {
                   value={newBoardName}
                   onChange={(e) => setNewBoardName(e.target.value)}
                   placeholder={t('common.boardNamePlaceholder')}
-                  className="w-full bg-transparent border-none text-sm outline-none text-white placeholder-gray-600"
+                  className={cn(
+                    "w-full bg-transparent border-none text-sm outline-none placeholder-gray-600",
+                    theme === 'dark' ? "text-white" : "text-gray-900"
+                  )}
                   onBlur={() => !newBoardName && setIsCreating(false)}
                 />
               </div>
@@ -192,7 +216,10 @@ export function Sidebar() {
           {isCollapsed && (
              <button 
                onClick={() => { setIsCollapsed(false); setIsCreating(true); }}
-               className="w-10 h-10 mx-auto mt-2 flex items-center justify-center text-gray-500 hover:text-[#ff6d5a] hover:bg-white/5 rounded-md transition-colors border border-dashed border-gray-700 hover:border-[#ff6d5a]/50"
+               className={cn(
+                 "w-10 h-10 mx-auto mt-2 flex items-center justify-center text-gray-500 hover:text-[#ff6d5a] rounded-md transition-colors border border-dashed hover:border-[#ff6d5a]/50",
+                 theme === 'dark' ? "hover:bg-white/5 border-gray-700" : "hover:bg-gray-100 border-gray-300"
+               )}
                title={t('common.createBoard')}
              >
                <Plus size={18} />
@@ -203,16 +230,41 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className={cn(
-        "p-4 border-t border-[#3e4149] flex items-center text-xs text-gray-500",
-        isCollapsed ? "justify-center" : "justify-between"
+        "p-4 border-t flex items-center text-xs text-gray-500",
+        theme === 'dark' ? "border-[#3e4149]" : "border-gray-200",
+        isCollapsed ? "flex-col gap-2 justify-center" : "justify-between"
       )}>
         {!isCollapsed ? (
             <>
                 <span>{t('common.version')}</span>
-                <button onClick={() => setShowHelp(true)} className="hover:text-gray-300 cursor-pointer">{t('common.help')}</button>
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={toggleTheme} 
+                    className={cn(
+                      "hover:text-gray-300 cursor-pointer p-1 rounded transition-colors",
+                      theme === 'dark' ? "hover:bg-white/5" : "hover:bg-gray-100 hover:text-gray-700"
+                    )}
+                    title={theme === 'dark' ? t('common.lightMode') : t('common.darkMode')}
+                  >
+                    {theme === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+                  </button>
+                  <button onClick={() => setShowHelp(true)} className={cn("cursor-pointer", theme === 'dark' ? "hover:text-gray-300" : "hover:text-gray-700")}>{t('common.help')}</button>
+                </div>
             </>
         ) : (
-            <span className="text-[10px]">v1.2</span>
+            <>
+              <button 
+                onClick={toggleTheme} 
+                className={cn(
+                  "hover:text-gray-300 cursor-pointer p-1 rounded transition-colors",
+                  theme === 'dark' ? "hover:bg-white/5" : "hover:bg-gray-100 hover:text-gray-700"
+                )}
+                title={theme === 'dark' ? t('common.lightMode') : t('common.darkMode')}
+              >
+                {theme === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+              </button>
+              <button onClick={() => setShowHelp(true)} className={cn("cursor-pointer", theme === 'dark' ? "hover:text-gray-300" : "hover:text-gray-700")} title={t('common.help')}>?</button>
+            </>
         )}
       </div>
 

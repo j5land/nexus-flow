@@ -1,23 +1,18 @@
-import { useEffect } from 'react';
-import { Sidebar } from '../components/layout/Sidebar';
 import { Board } from '../components/Board';
+import { Sidebar } from '../components/layout/Sidebar';
 import { useBoardStore } from '../store/useBoardStore';
+import Empty from '../components/Empty';
+import { useTheme } from '../context/ThemeContext';
 
-export default function Home() {
-  // We no longer need to auto-create board here, the store init handles it.
-  const { currentBoardId, isLoading } = useBoardStore();
+export function Home() {
+  const { currentBoardId } = useBoardStore();
+  const { theme } = useTheme();
 
   return (
-    <div className="flex w-full h-screen bg-background overflow-hidden">
+    <div className={`flex h-screen w-full ${theme === 'dark' ? 'bg-[#1b1d21]' : 'bg-gray-50'}`}>
       <Sidebar />
-      <main className="flex-1 relative h-full">
-        {currentBoardId && !isLoading ? (
-          <Board />
-        ) : (
-          <div className="flex items-center justify-center h-full text-muted-foreground">
-            {isLoading ? 'Loading Workspace...' : 'Select a board to start'}
-          </div>
-        )}
+      <main className="flex-1 h-full overflow-hidden relative">
+        {currentBoardId ? <Board /> : <Empty />}
       </main>
     </div>
   );

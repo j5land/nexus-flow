@@ -68,14 +68,34 @@
     stroke: #ff6d5a;
 }
 
-/* Controls Dark Theme overrides */
-.react-flow__controls-button {
+@layer utilities {
+  .react-flow__controls-dark button {
     background-color: #2d3036 !important;
     border-bottom: 1px solid #3e4149 !important;
-    fill: #f2f2f2 !important;
-}
-.react-flow__controls-button:hover {
+    fill: #e5e7eb !important;
+  }
+  .react-flow__controls-dark button:hover {
     background-color: #3e4149 !important;
+    fill: #ffffff !important;
+  }
+  .react-flow__controls-dark {
+    border: 1px solid #3e4149 !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  }
+
+  .react-flow__controls-light button {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    fill: #4b5563 !important;
+  }
+  .react-flow__controls-light button:hover {
+    background-color: #f3f4f6 !important;
+    fill: #111827 !important;
+  }
+  .react-flow__controls-light {
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  }
 }
 
 .react-flow__attribution {
