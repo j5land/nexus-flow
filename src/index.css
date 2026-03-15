@@ -1,0 +1,83 @@
+@import '@xyflow/react/dist/style.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 10% 12%; /* #1b1d21 */
+    --foreground: 0 0% 95%; /* #f2f2f2 */
+
+    --card: 222 8% 20%; /* #2d3036 */
+    --card-foreground: 0 0% 95%;
+ 
+    --popover: 222 8% 20%;
+    --popover-foreground: 0 0% 95%;
+ 
+    --primary: 9 100% 68%; /* #ff6d5a */
+    --primary-foreground: 0 0% 100%;
+ 
+    --secondary: 222 8% 16%; /* #25272c */
+    --secondary-foreground: 0 0% 95%;
+ 
+    --muted: 220 5% 58%; /* #8d9299 */
+    --muted-foreground: 220 5% 70%;
+ 
+    --accent: 222 8% 25%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 222 8% 26%; /* #3e4149 */
+    --input: 222 8% 26%;
+    --ring: 9 100% 68%;
+ 
+    --radius: 0.5rem;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* React Flow Customization */
+.react-flow__handle {
+    width: 10px;
+    height: 10px;
+    background: #b0b0b0;
+    border: 1px solid #3e4149;
+}
+
+.react-flow__handle:hover {
+    background: #ff6d5a;
+    border-color: #ff6d5a;
+}
+
+.react-flow__edge-path {
+    stroke: #8d9299;
+    stroke-width: 2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+    stroke: #ff6d5a;
+}
+
+/* Controls Dark Theme overrides */
+.react-flow__controls-button {
+    background-color: #2d3036 !important;
+    border-bottom: 1px solid #3e4149 !important;
+    fill: #f2f2f2 !important;
+}
+.react-flow__controls-button:hover {
+    background-color: #3e4149 !important;
+}
+
+.react-flow__attribution {
+    display: none;
+}
