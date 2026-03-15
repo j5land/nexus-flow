@@ -1,134 +1,134 @@
-# NexusFlow
+# NexusFlow (流程演示工具)
 
-[English](README.md) | [中文](README_zh.md)
+[English](README_en.md) | [中文](README.md)
 
-**NexusFlow** is a modern, local-first flow presentation tool built with React Flow. It allows you to create interactive diagrams, mind maps, and presentation boards with rich media support, all running directly in your browser without any cloud dependency.
+**NexusFlow** 是一个基于 React Flow 构建的现代、本地优先的流程演示工具。它允许您直接在浏览器中创建交互式图表、思维导图和演示板，支持富媒体内容，无需依赖任何云服务。
 
-![NexusFlow Preview](docs/assets/preview.png)
+![NexusFlow 预览](docs/assets/preview.png)
 
-## ✨ Features
+## ✨ 核心特性
 
-- **Infinite Canvas**: Drag, zoom, and pan freely on an infinite workspace.
-- **Rich Media Nodes**:
-  - **Image Node**: Upload and resize images (PNG, JPG, GIF, WEBP).
-  - **Browser Node**: Embed live websites via IFrame for demos.
-  - **Markdown Node**: Write rich text with GFM support (tables, code blocks).
-- **Local-First Storage**: All data is stored in your browser's **IndexedDB**.
-  - No size limits (unlike LocalStorage).
-  - Works completely offline.
-  - Privacy-focused: Your data never leaves your device.
-- **Multi-Board Support**: Create and manage multiple workspaces.
-- **Internationalization**: Full English and Chinese (Simplified) support.
-- **Dark Mode**: Optimized for long working sessions.
+- **无限画布**: 在无限的工作区上自由拖拽、缩放和平移。
+- **富媒体节点**:
+  - **图片节点**: 上传并调整图片大小 (支持 PNG, JPG, GIF, WEBP)。
+  - **浏览器节点**: 通过 IFrame 嵌入实时网页，用于演示或展示文档。
+  - **Markdown 节点**: 支持 GFM 语法的富文本编辑器 (表格、代码块)。
+- **本地优先存储**: 所有数据均存储在浏览器的 **IndexedDB** 中。
+  - 无容量限制 (突破 LocalStorage 的 5MB 限制)。
+  - 完全支持离线工作。
+  - 隐私安全: 您的数据绝不会离开您的设备。
+- **多看板支持**: 创建和管理多个独立的工作区。
+- **国际化**: 提供完整的英文和简体中文支持。
+- **深色模式**: 专为长时间工作优化的暗色界面。
 
-## 🛠 Tech Stack
+## 🛠 技术栈
 
-- **Framework**: React + Vite
-- **Canvas Engine**: React Flow (@xyflow/react)
-- **State Management**: Zustand
-- **Storage**: IndexedDB (idb)
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **i18n**: i18next
+- **框架**: React + Vite
+- **画布引擎**: React Flow (@xyflow/react)
+- **状态管理**: Zustand
+- **存储层**: IndexedDB (idb)
+- **样式**: Tailwind CSS
+- **图标库**: Lucide React
+- **国际化**: i18next
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-### Prerequisites
+### 前置要求
 
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js (v18 或更高版本)
+- npm 或 yarn
 
-### Installation
+### 安装步骤
 
-1.  Clone the repository:
+1.  克隆仓库:
     ```bash
     git clone https://github.com/your-username/nexus-flow.git
     cd nexus-flow
     ```
 
-2.  Install dependencies:
+2.  安装依赖:
     ```bash
     npm install
     ```
 
-3.  Start the development server:
+3.  启动开发服务器:
     ```bash
     npm run dev
     ```
 
-4.  Open your browser at `http://localhost:5173`.
+4.  在浏览器中打开 `http://localhost:5173`。
 
-## 🗺 Roadmap (2026-2027)
+## 🗺 路线图 (2026-2027)
 
-We are currently at **v1.0**. Here is our plan for the next year:
+当前版本为 **v1.0**。以下是我们未来一年的规划：
 
-### Q2 2026 (v1.1 - v1.2)
-- [ ] **History & Shortcuts**: Undo/Redo (Cmd+Z/Cmd+Shift+Z) support.
-- [ ] **Clipboard Integration**: Paste images or text directly from clipboard to create nodes.
-- [ ] **Node Actions**: Copy/Paste/Duplicate nodes with shortcuts.
-- [ ] **Export/Import**: Export boards as JSON files for backup/sharing.
-- [ ] **Image Export**: Export canvas as PNG/SVG.
-- [ ] **Performance**: Virtualization for large boards with 1000+ nodes.
+### 2026 Q2 (v1.1 - v1.2)
+- [ ] **历史记录与快捷键**: 支持撤销/重做 (Cmd+Z / Cmd+Shift+Z)。
+- [ ] **剪贴板集成**: 直接粘贴剪贴板中的图片或文本来创建节点。
+- [ ] **节点操作**: 支持节点的复制/粘贴/重复操作快捷键。
+- [ ] **导出/导入**: 将看板导出为 JSON 文件以便备份或分享。
+- [ ] **图片导出**: 将画布导出为 PNG/SVG 图片。
+- [ ] **性能优化**: 针对 1000+ 节点的大型看板引入虚拟化渲染。
 
-### Q3 2026 (v1.3 - v1.4)
-- [ ] **New Nodes**: Sticky Note, Todo List, Kanban Board.
-- [ ] **Minimap**: Navigation overview for large diagrams.
-- [ ] **Theming**: Custom background colors and grid styles.
+### 2026 Q3 (v1.3 - v1.4)
+- [ ] **新节点类型**: 便签 (Sticky Note)、待办清单 (Todo List)、看板 (Kanban)。
+- [ ] **小地图**: 为大型图表提供导航概览。
+- [ ] **主题定制**: 自定义背景颜色和网格样式。
 
-### Q4 2026 (v1.5 - v1.6)
-- [ ] **Collaboration**: Peer-to-peer (P2P) real-time collaboration (WebRTC).
-- [ ] **Plugin System**: Foundation for community extensions.
+### 2026 Q4 (v1.5 - v1.6)
+- [ ] **协作功能**: 基于 P2P (WebRTC) 的实时协作功能。
+- [ ] **插件系统**: 构建社区扩展的基础架构。
 
-### Q1 2027 (v2.0)
-- [ ] **Mobile Support**: Optimized touch interactions for tablets.
-- [ ] **AI Assistant**: Auto-layout and content generation suggestions.
-- [ ] **Plugin Marketplace**: Browse and install community plugins.
+### 2027 Q1 (v2.0)
+- [ ] **移动端支持**: 优化平板电脑的触摸交互体验。
+- [ ] **AI 助手**: 自动布局建议和内容生成。
+- [ ] **插件市场**: 浏览并安装社区插件。
 
-## 🤝 Contributing
+## 🤝 贡献指南
 
-We warmly welcome contributions from everyone! Whether you're fixing a bug, improving documentation, or proposing a new feature, your help is appreciated.
+我们非常欢迎来自**任何人**的贡献！无论是修复 Bug、完善文档，还是提出新功能建议，您的帮助对我们都至关重要。
 
-### How to Contribute
+### 如何参与贡献 (How to Contribute)
 
-1.  **Fork** the repository to your own GitHub account.
-2.  **Clone** the project to your local machine.
-3.  Create a new **Branch** for your changes:
+1.  **Fork** 本仓库到您的 GitHub 账号。
+2.  **Clone** 项目到本地环境。
+3.  创建一个新分支 (Branch):
     ```bash
     git checkout -b feature/amazing-feature
     ```
-4.  Commit your changes:
+4.  提交您的更改 (Commit):
     ```bash
-    git commit -m "feat: Add amazing feature"
+    git commit -m "feat: 新增了令人惊叹的功能"
     ```
-5.  Push to your branch:
+5.  推送到您的分支 (Push):
     ```bash
     git push origin feature/amazing-feature
     ```
-6.  Open a **Pull Request (PR)** on GitHub.
+6.  在 GitHub 上发起一个 **Pull Request (PR)**。
 
-### Reporting Issues & Feature Requests
+### 提交问题与功能请求 (Issues)
 
-If you find a bug or have an idea for a new feature, please open an [Issue](https://github.com/j5land/nexus-flow/issues).
+如果您发现了 Bug 或有新功能建议，请提交 [Issue](https://github.com/j5land/nexus-flow/issues)。
 
-**Issue Template Guidelines:**
+**Issue 提交规范建议：**
 
-- **Bug Report**:
-  - **Description**: What happened?
-  - **Reproduction Steps**: How can we reproduce it?
-  - **Expected Behavior**: What should have happened?
-  - **Environment**: Browser version, OS, etc.
+- **Bug 报告 (Bug Report)**:
+  - **描述**: 发生了什么问题？
+  - **复现步骤**: 我们如何重现这个问题？
+  - **预期行为**: 本应该发生什么？
+  - **环境信息**: 浏览器版本、操作系统等。
 
-- **Feature Request**:
-  - **Goal**: What problem are you trying to solve?
-  - **Proposal**: How should the solution look like?
-  - **Alternatives**: Any other solutions considered?
+- **功能请求 (Feature Request)**:
+  - **背景**: 您想解决什么问题？
+  - **建议方案**: 您期望的解决方案是什么样的？
+  - **替代方案**: 有考虑过其他方案吗？
 
-### Development Guidelines
+### 开发规范
 
-- Please ensure your code follows the existing style (Tailwind CSS, React Hooks).
-- Update `src/lib/i18n.ts` if you add new text strings.
-- Test your changes thoroughly before submitting.
+- 请确保代码遵循现有的风格 (Tailwind CSS, React Hooks)。
+- 如果您添加了新的文本内容，请同步更新 `src/lib/i18n.ts`。
+- 在提交前请充分测试您的更改。
 
-## 📄 License
+## 📄 许可证
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+本项目基于 MIT 许可证开源 - 详情请参阅 [LICENSE](LICENSE) 文件。
